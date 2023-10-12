@@ -1,4 +1,36 @@
 # Input section that takes all the customer details
+# Constructing the personal variables
+
+def camping():
+    standard_pitch = 1
+    secluded_pitch = 2
+    yurt = 3
+
+    print("\nWhat type of camping do you want?"
+          "\n1 - Standard camping pitches"
+          "\n2 - Secluded pitches"
+          "\n3 - Yurts")
+    while True:
+        try:
+            camping_type = int(input("\nSelect 1,2 or 3: "))
+            if camping_type < 4:
+                break
+
+        except ValueError:
+            print("\nPlease enter a number!")
+
+
+
+print("Cheers!")
+
+
+
+
+
+
+
+
+
 
 print("\n\nWelcome to the Sustainability Booking System\n")
 while True:
@@ -21,8 +53,34 @@ while True:
     except:
         continue
 
+# Number of people and nights
+while True:
+    try:
+        number_of_nights = int(input("\nNumber of nights: "))
+    except ValueError:
+        print("Please enter a number")
+    else:
+        break
+while True:
+    try:
+        number_of_people = int(input("Number of people: "))
+    except ValueError:
+        print("Please enter a number")
+    else:
+        break
 
-
-
-print("End")
-
+# Accommodation type
+while True:
+    try:
+        accommodation_type = int(input("\n1 - for Camping"
+                                       "\n2 - for Lodge"
+                                       "\nSelect 1 or 2: "))
+    except ValueError:
+        print("Please enter a number")
+    else:
+        if accommodation_type == 1:
+            print(f"\nYou have selected Camping for {number_of_people} people for {number_of_nights} nights")
+            camping()
+        else:
+            print(f"\nYou have selected the Lodge for {number_of_people} people for {number_of_nights} nights")
+        break
