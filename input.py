@@ -33,6 +33,8 @@ def get_cust_info():
 
             if confirm.lower() == "y":
                 print("\nThank you!")
+                with open("customer_list.txt","a") as f:
+                    f.write(name + " " + surname + " " + cust_email + " " + cust_phone + "\n")
                 break
             else:
                 print("Please re-enter the customer details.")
