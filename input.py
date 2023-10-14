@@ -1,6 +1,6 @@
 # Input section that takes all the customer details
-
 # Constructing the personal variables
+
 name = "0"
 surname = "0"
 cust_email = "0"
@@ -9,24 +9,8 @@ number_of_nights = 0
 number_of_people = 0
 accommodation_type = 0
 camping_type = 0
-lodge_type = 0
-
-# ROOM TYPES
-double_room = [3, 7]
-triple_room = [1, 2, 4, 8, 9, 10, 11, 12, 13, 14, 15]
-family_room = [4, 5]
-
-# CAMPING PITCHES
-standard_pitch = [1, 2, 3, 4, 5, 6, 7, 8]
-secluded_pitch = ["Forget Me Knot", "Bramble", "Oak"]
-
-# YURTS
-yurt1 = ["Rose"]
-yurt2 = ["Olive"]
-yurt3 = ["Mini"]
 
 
-# Get customer personal details
 def get_cust_info():
     global name
     global surname
@@ -79,8 +63,8 @@ def accommodation():
         else:
             break
 
-
     # Accommodation type
+
     while True:
         try:
             accommodation_type = int(input("\n1 - for Camping"
@@ -94,11 +78,9 @@ def accommodation():
                 camping()
             else:
                 print(f"\nYou have selected the Lodge for {number_of_people} people for {number_of_nights} nights")
-                lodge()
             break
 
 
-# get camping information
 def camping():
     global camping_type
     print("\nWhat type of camping do you want?"
@@ -117,43 +99,6 @@ def camping():
     print("Cheers!")
 
 
-# Get Lodge information
-def lodge():
-    global lodge_type
-    print("\nWhat type of room do you want?"
-          "\n1 - Double room"
-          "\n2 - Triple room"
-          "\n3 - Family room")
-    while True:
-        try:
-            lodge_type = int(input("\nSelect 1,2 or 3: "))
-            if lodge_type < 4:
-                confirm = input(f"You want to book a {lodge_type} room for {number_of_people} people. Correct? y/n: ").lower()
-                if confirm == "y":
-                    print("Awesome!")
-                    break
-                else:
-                    print("Please choose again -")
-                    continue
-
-        except ValueError:
-            print("\nPlease try again!")
-
-
-        if confirm == "y":
-            print("Awesome!")
-            break
-        else:
-            print("Please enter y or n: ")
-            continue
-
-
 get_cust_info()
 accommodation()
-print(f"\n\nName - {name, surname}"
-      f"\nEmail/Phone number - {cust_email, cust_phone}"
-      f"\nNumber of nights - {number_of_nights}"
-      f"\nNumber of people - {number_of_people}"
-      f"\nAccommodation type - {accommodation_type}"
-      f"\nCamping type - {camping_type}"
-      f"\nLodge type - {lodge_type}")
+print(name, surname, cust_email, cust_phone)
