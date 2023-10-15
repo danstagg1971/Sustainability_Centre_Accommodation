@@ -1,5 +1,3 @@
-# Input section that takes all the customer details
-
 # Constructing the personal variables
 name = "0"
 surname = "0"
@@ -28,7 +26,17 @@ yurt1 = ["Rose"]
 yurt2 = ["Olive"]
 yurt3 = ["Mini"]
 
+# Tariff
+standard_pitch_cost = 10
+secluded_pitch_cost = 18
+rose_cost = 140
+olive_cost = 140
+mini_cost = 100
+lodge_single_cost = 35
+lodge_family_cost = 90
 
+
+# Input section that takes all the customer details
 # Get customer personal details
 def get_cust_info():
     global name
@@ -110,17 +118,20 @@ def camping():
             camping_type = int(input("\nSelect 1,2 or 3: "))
             if camping_type == 1:
                 camping_type = standard_pitch[0]
+                camping_standard_calc()
+                break
             elif camping_type == 2:
                 camping_type = secluded_pitch[0]
+                camping_secluded_calc()
+                break
             elif camping_type == 3:
                 camping_type = yurts
-            else:
-                continue
+                yurt_calc()
+                break
             confirm_camping = input(
                 f"You want to book a {camping_type} for {number_of_people} people. Correct? y/n: ").lower()
             if confirm_camping == "y":
                 print("Awesome!")
-                break
         except ValueError:
             print("\nPlease try again!")
 
@@ -147,17 +158,58 @@ def lodge():
                 f"You want to book a {lodge_type} room for {number_of_people} people. Correct? y/n: ").lower()
             if confirm_lodge == "y":
                 print("Awesome!")
+                lodge_calc()
                 break
         except ValueError:
             print("\nPlease try again!")
 
+# Cost Calculations
+def lodge_calc():
+    cost = number_of_nights * number_of_people * lodge_single_cost
+    print(f"Total cost for {number_of_nights} nights in a {lodge_type}"
+          f"\nfor {number_of_people} people is - £{cost}")
+
+
+def camping_standard_calc():
+    cost = number_of_nights * number_of_people * standard_pitch_cost
+    print(f"Total cost for {number_of_nights} nights in a standard pitch"
+          f"\nfor {number_of_people} people is - £{cost}")
+
+
+def camping_secluded_calc():
+    cost = number_of_nights * number_of_people * secluded_pitch_cost
+    print(f"Total cost for {number_of_nights} nights in a secluded pitch"
+          f"\nfor {number_of_people} people is - £{cost}")
+
+
+def yurt_calc():
+    while True:
+        yurt_type = int(input("\n1 - Rose yurt (up to 5 people)"
+                              "\n2 - Olive yurt (up to 5 people)"
+                              "\n3 - Mini yurt (up to 2 people)"
+                              "\n\nPlease select a yurt: "))
+        if yurt_type == 1 and number_of_people <= 5:
+            cost = number_of_nights * rose_cost
+            print(f"Total cost for {number_of_nights} nights in Rose yurt"
+                  f"\nfor {number_of_people} people is - £{cost}")
+            break
+
+        elif yurt_type == 2 and number_of_people <= 5:
+            cost = number_of_nights * olive_cost
+            print(f"Total cost for {number_of_nights} nights in Olive yurt"
+                  f"\nfor {number_of_people} people is - £{cost}")
+            break
+        elif yurt_type == 3 and number_of_people <= 2:
+            cost = number_of_nights * mini_cost
+            print(f"Total cost for {number_of_nights} nights in Mini yurt"
+                  f"\nfor {number_of_people} people is - £{cost}")
+            break
+        else:
+            print("Two many people for this yurt")
+            accommodation()
+            break
+
 
 get_cust_info()
 accommodation()
-print(f"\n\nName - {name, surname}"
-      f"\nEmail/Phone number - {cust_email, cust_phone}"
-      f"\nNumber of nights - {number_of_nights}"
-      f"\nNumber of people - {number_of_people}"
-      f"\nAccommodation type - {accommodation_type}"
-      f"\nCamping type - {camping_type}"
-      f"\nLodge type - {lodge_type}")
+
