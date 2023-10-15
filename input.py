@@ -11,6 +11,7 @@ accommodation_type = 0
 camping_type = 0
 lodge_type = 0
 confirm_lodge = "0"
+confirm_camping = "0"
 
 # ROOM TYPES
 double_room = ["Double room", 3, 7]
@@ -18,10 +19,11 @@ triple_room = ["Triple room", 1, 2, 4, 8, 9, 10, 11, 12, 13, 14, 15]
 family_room = ["Family room", 4, 5]
 
 # CAMPING PITCHES
-standard_pitch = [1, 2, 3, 4, 5, 6, 7, 8]
-secluded_pitch = ["Forget Me Knot", "Bramble", "Oak"]
+standard_pitch = ["Standard pitch", 1, 2, 3, 4, 5, 6, 7, 8]
+secluded_pitch = ["Secluded pitch", "Forget Me Knot", "Bramble", "Oak"]
 
 # YURTS
+yurts = "Yurt"
 yurt1 = ["Rose"]
 yurt2 = ["Olive"]
 yurt3 = ["Mini"]
@@ -98,7 +100,7 @@ def accommodation():
 
 # get camping information
 def camping():
-    global camping_type
+    global confirm_camping, camping_type, standard_pitch, secluded_pitch, yurts, yurt1, yurt2, yurt3
     print("\nWhat type of camping do you want?"
           "\n1 - Standard camping pitches"
           "\n2 - Secluded pitches"
@@ -106,13 +108,21 @@ def camping():
     while True:
         try:
             camping_type = int(input("\nSelect 1,2 or 3: "))
-            if camping_type < 4:
+            if camping_type == 1:
+                camping_type = standard_pitch[0]
+            elif camping_type == 2:
+                camping_type = secluded_pitch[0]
+            elif camping_type == 3:
+                camping_type = yurts
+            else:
+                continue
+            confirm_camping = input(
+                f"You want to book a {camping_type} for {number_of_people} people. Correct? y/n: ").lower()
+            if confirm_camping == "y":
+                print("Awesome!")
                 break
-
         except ValueError:
-            print("\nPlease enter a number!")
-
-    print("Cheers!")
+            print("\nPlease try again!")
 
 
 # Get Lodge information
