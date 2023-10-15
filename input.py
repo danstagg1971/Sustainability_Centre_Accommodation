@@ -106,7 +106,6 @@ def accommodation():
                 break
 
 
-
 # get camping information
 def camping():
     global confirm_camping, camping_type, standard_pitch, secluded_pitch, yurts, yurt1, yurt2, yurt3
@@ -164,6 +163,7 @@ def lodge():
         except ValueError:
             print("\nPlease try again!")
 
+
 # Cost Calculations
 def lodge_calc():
     cost = number_of_nights * number_of_people * lodge_single_cost
@@ -212,16 +212,24 @@ def yurt_calc():
 
 
 print("\n\nWelcome to the Sustainability Booking System")
+
+
 def beginning():
-    start = int(input("\n1 - booking System"
-                      "\n2 - Exit"
-                      "\n\nPlease select: "))
     while True:
-        if start == 1:
-            get_cust_info()
-            break
-        else:
-            quit()
+        try:
+            start = int(input("\n1 - booking System"
+                              "\n2 - Exit"
+                              "\n\nPlease select: "))
+
+            if start == 1:
+                get_cust_info()
+                break
+            elif start == 2:
+                print("Bye!")
+                quit()
+        except ValueError:
+            print("Please enter 1 or 2")
+            continue
 
 
 beginning()
