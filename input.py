@@ -44,11 +44,9 @@ def get_cust_info():
     global cust_email
     global cust_phone
 
-    print("\n\nWelcome to the Sustainability Booking System\n")
-
     while True:
         try:
-            name = input("Please enter customer first name: ")
+            name = input("\nPlease enter customer first name: ")
             surname = input("Please enter customer second name: ")
             cust_email = input("Please enter email address: ")
             cust_phone = input("Please enter phone number: ")
@@ -62,7 +60,8 @@ def get_cust_info():
                 print("\nThank you!")
                 with open("customer_list.txt", "a") as f:
                     f.write(name + " " + surname + " " + cust_email + " " + cust_phone + "\n")
-                break
+                accommodation()
+                beginning()
             else:
                 print("Please re-enter the customer details.")
         except ValueError:
@@ -100,10 +99,12 @@ def accommodation():
             if accommodation_type == 1:
                 print(f"\nYou have selected Camping for {number_of_people} people for {number_of_nights} nights")
                 camping()
+                break
             else:
                 print(f"\nYou have selected the Lodge for {number_of_people} people for {number_of_nights} nights")
                 lodge()
-            break
+                break
+
 
 
 # get camping information
@@ -210,6 +211,17 @@ def yurt_calc():
             break
 
 
-get_cust_info()
-accommodation()
+print("\n\nWelcome to the Sustainability Booking System")
+def beginning():
+    start = int(input("\n1 - booking System"
+                      "\n2 - Exit"
+                      "\n\nPlease select: "))
+    while True:
+        if start == 1:
+            get_cust_info()
+            break
+        else:
+            quit()
 
+
+beginning()
