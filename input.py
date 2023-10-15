@@ -10,11 +10,12 @@ number_of_people = 0
 accommodation_type = 0
 camping_type = 0
 lodge_type = 0
+confirm_lodge = "0"
 
 # ROOM TYPES
-double_room = [3, 7]
-triple_room = [1, 2, 4, 8, 9, 10, 11, 12, 13, 14, 15]
-family_room = [4, 5]
+double_room = ["Double room", 3, 7]
+triple_room = ["Triple room", 1, 2, 4, 8, 9, 10, 11, 12, 13, 14, 15]
+family_room = ["Family room", 4, 5]
 
 # CAMPING PITCHES
 standard_pitch = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -49,7 +50,7 @@ def get_cust_info():
 
             if confirm.lower() == "y":
                 print("\nThank you!")
-                with open("customer_list.txt","a") as f:
+                with open("customer_list.txt", "a") as f:
                     f.write(name + " " + surname + " " + cust_email + " " + cust_phone + "\n")
                 break
             else:
@@ -60,9 +61,7 @@ def get_cust_info():
 
 # Number of people and nights
 def accommodation():
-    global number_of_nights
-    global number_of_people
-    global accommodation_type
+    global number_of_nights, number_of_people, accommodation_type
 
     while True:
         try:
@@ -78,7 +77,6 @@ def accommodation():
             print("Please enter a number")
         else:
             break
-
 
     # Accommodation type
     while True:
@@ -119,7 +117,7 @@ def camping():
 
 # Get Lodge information
 def lodge():
-    global lodge_type
+    global lodge_type, confirm_lodge, double_room, triple_room, family_room
     print("\nWhat type of room do you want?"
           "\n1 - Double room"
           "\n2 - Triple room"
@@ -127,25 +125,24 @@ def lodge():
     while True:
         try:
             lodge_type = int(input("\nSelect 1,2 or 3: "))
-            if lodge_type < 4:
-                confirm = input(f"You want to book a {lodge_type} room for {number_of_people} people. Correct? y/n: ").lower()
-                if confirm == "y":
-                    print("Awesome!")
-                    break
-                else:
-                    print("Please choose again -")
-                    continue
-
+            if lodge_type == 1:
+                lodge_type = double_room[0]
+            elif lodge_type == 2:
+                lodge_type = triple_room[0]
+            elif lodge_type == 3:
+                lodge_type = family_room[0]
+            else:
+                continue
+            confirm_lodge = input(
+                f"You want to book a {lodge_type} room for {number_of_people} people. Correct? y/n: ").lower()
+            if confirm_lodge == "y":
+                print("Awesome!")
+                break
         except ValueError:
             print("\nPlease try again!")
 
 
-        if confirm == "y":
-            print("Awesome!")
-            break
-        else:
-            print("Please enter y or n: ")
-            continue
+
 
 
 get_cust_info()
