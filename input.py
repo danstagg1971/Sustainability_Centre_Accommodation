@@ -46,10 +46,10 @@ def get_cust_info():
 
     while True:
         try:
-            name = input("\nPlease enter customer first name: ")
-            surname = input("Please enter customer second name: ")
-            cust_email = input("Please enter email address: ")
-            cust_phone = input("Please enter phone number: ")
+            name = input("\nPlease enter customer first name: ").strip()
+            surname = input("Please enter customer second name: ").strip()
+            cust_email = input("Please enter email address: ").strip()
+            cust_phone = input("Please enter phone number: ").strip()
             print(f"\n\nThe details you have entered are:\n"
                   f"Name - {name} {surname}\n"
                   f"Email - {cust_email}\n"
