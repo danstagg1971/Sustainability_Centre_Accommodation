@@ -1,3 +1,10 @@
+from datetime import datetime
+from cust_database import CustomerDatabase
+today = datetime.today().strftime("%d-%m-%Y")
+db = CustomerDatabase()
+
+
+
 # Constructing the personal variables
 name = "0"
 surname = "0"
@@ -60,6 +67,14 @@ def get_cust_info():
                 print("\nThank you!")
                 with open("customer_list.txt", "a") as f:
                     f.write(name + " " + surname + " " + cust_email + " " + cust_phone + "\n")
+                    item1 = (
+                        today,
+                        name,
+                        surname,
+                        cust_email,
+                        cust_phone
+                    )
+                    db.insert(item1)
                 accommodation()
                 beginning()
             else:
