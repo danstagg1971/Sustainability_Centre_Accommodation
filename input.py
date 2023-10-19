@@ -1,9 +1,8 @@
-from datetime import datetime
 from cust_database import CustomerDatabase
+from datetime import datetime
+
 today = datetime.today().strftime("%d-%m-%Y")
 db = CustomerDatabase()
-
-
 
 # Constructing the personal variables
 name = "0"
@@ -161,14 +160,16 @@ def lodge():
     while True:
         try:
             lodge_type = int(input("\nSelect 1,2 or 3: "))
-            if lodge_type == 1:
+            if lodge_type == 1 and number_of_people <= 2:
                 lodge_type = double_room[0]
-            elif lodge_type == 2:
+            elif lodge_type == 2 and number_of_people <= 3:
                 lodge_type = triple_room[0]
-            elif lodge_type == 3:
+            elif lodge_type == 3 and number_of_people <= 5:
                 lodge_type = family_room[0]
             else:
-                continue
+                print("\nPlease re-enter!\n")
+                accommodation()
+                beginning()
             confirm_lodge = input(
                 f"You want to book a {lodge_type} room for {number_of_people} people. Correct? y/n: ").lower()
             if confirm_lodge == "y":
@@ -224,6 +225,7 @@ def yurt_calc():
             print("Two many people for this yurt")
             accommodation()
             break
+
 
 
 print("\n\nWelcome to the Sustainability Booking System")
