@@ -9,6 +9,7 @@ number_of_nights = 0
 number_of_people = 0
 accommodation_type = 0
 lodge_type = 0
+camping_type = 0
 
 
 # Input section that takes all the customer details
@@ -89,7 +90,7 @@ def accommodation():
 
 # get camping information
 def camping():
-    # global confirm_camping, camping_type, standard_pitch, secluded_pitch, yurts, yurt1, yurt2, yurt3
+    global camping_type
     print("\nWhat type of camping do you want?"
           "\n1 - Standard camping pitches"
           "\n2 - Secluded pitches"
@@ -119,7 +120,7 @@ def camping():
 
 # Get Lodge information
 def lodge():
-    global lodge_type  # confirm_lodge, double_room, triple_room, family_room
+    global lodge_type
     print("\nWhat type of room do you want?"
           "\n1 - Double room"
           "\n2 - Triple room"
@@ -194,6 +195,7 @@ def yurt_calc():
             break
 
 
+# Start of program
 print("\n\nWelcome to the Sustainability Booking System")
 
 
@@ -203,7 +205,6 @@ def beginning():
             start = int(input("\n1 - booking System"
                               "\n2 - Exit"
                               "\n\nPlease select: "))
-
             if start == 1:
                 get_cust_info()
                 break
