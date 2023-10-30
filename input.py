@@ -1,55 +1,19 @@
 from cust_database import CustomerDatabase
 from datetime import datetime
+from variables import *
 
 today = datetime.today().strftime("%d-%m-%Y")
 db = CustomerDatabase()
 
-# Constructing the personal variables
-name = "0"
-surname = "0"
-cust_email = "0"
-cust_phone = 0
 number_of_nights = 0
 number_of_people = 0
 accommodation_type = 0
-camping_type = 0
 lodge_type = 0
-confirm_lodge = "0"
-confirm_camping = "0"
-
-# ROOM TYPES
-double_room = ["Double room", 3, 7]
-triple_room = ["Triple room", 1, 2, 4, 8, 9, 10, 11, 12, 13, 14, 15]
-family_room = ["Family room", 4, 5]
-
-# CAMPING PITCHES
-standard_pitch = ["Standard pitch", 1, 2, 3, 4, 5, 6, 7, 8]
-secluded_pitch = ["Secluded pitch", "Forget Me Knot", "Bramble", "Oak"]
-
-# YURTS
-yurts = "Yurt"
-yurt1 = ["Rose"]
-yurt2 = ["Olive"]
-yurt3 = ["Mini"]
-
-# Tariff
-standard_pitch_cost = 10
-secluded_pitch_cost = 18
-rose_cost = 140
-olive_cost = 140
-mini_cost = 100
-lodge_single_cost = 35
-lodge_family_cost = 90
 
 
 # Input section that takes all the customer details
 # Get customer personal details
 def get_cust_info():
-    global name
-    global surname
-    global cust_email
-    global cust_phone
-
     while True:
         try:
             name = input("\nPlease enter customer first name: ").strip()
@@ -64,8 +28,12 @@ def get_cust_info():
 
             if confirm.lower() == "y":
                 print("\nThank you!")
+
+                # create the customer_list.txt and add the customer input to it
                 with open("customer_list.txt", "a") as f:
                     f.write(name + " " + surname + " " + cust_email + " " + cust_phone + "\n")
+
+                    # create the database file and add the customer details to it
                     item1 = (
                         today,
                         name,
@@ -85,7 +53,6 @@ def get_cust_info():
 # Number of people and nights
 def accommodation():
     global number_of_nights, number_of_people, accommodation_type
-
     while True:
         try:
             number_of_nights = int(input("\nNumber of nights: "))
@@ -122,7 +89,7 @@ def accommodation():
 
 # get camping information
 def camping():
-    global confirm_camping, camping_type, standard_pitch, secluded_pitch, yurts, yurt1, yurt2, yurt3
+    # global confirm_camping, camping_type, standard_pitch, secluded_pitch, yurts, yurt1, yurt2, yurt3
     print("\nWhat type of camping do you want?"
           "\n1 - Standard camping pitches"
           "\n2 - Secluded pitches"
@@ -152,7 +119,7 @@ def camping():
 
 # Get Lodge information
 def lodge():
-    global lodge_type, confirm_lodge, double_room, triple_room, family_room
+    global lodge_type  # confirm_lodge, double_room, triple_room, family_room
     print("\nWhat type of room do you want?"
           "\n1 - Double room"
           "\n2 - Triple room"
@@ -225,7 +192,6 @@ def yurt_calc():
             print("Two many people for this yurt")
             accommodation()
             break
-
 
 
 print("\n\nWelcome to the Sustainability Booking System")
